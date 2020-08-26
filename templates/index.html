@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scharlau COA, TDS, MSDS</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/bootstrap.css") }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/fontawesome.min.css"
+          integrity="sha512-KaDHuUCVKrgD82qOP/wBQhC/N+aVBrd0urZlmSc1AMT/43SBld35wbN5C5SpaxqogSLsTmUyVkVnBoO5Y0GScg=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/solid.min.css"
+          integrity="sha512-U6fJ0MTolGOA1QWWtm+Rif12PySXlh6ymZJCVwhEaLS6q9L7aa18hc+4TInOnr9YXWybfBCSf93tRwGh9AuyCw=="
+          crossorigin="anonymous"/>
+    <style>
+        .load-rotate {
+            animation: rotation 2s infinite linear;
+        }
+
+        @keyframes rotation {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(359deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row p-3 bg-light">
+        <div class="col-12 align-self-center">
+            <h1 class="display-4 my-5">Scharlau Analiz Sertifikası İndirme Programı</h1>
+            <h3 class="display-5 text-left">Kullanım</h3>
+            <p class="text-left">Örnek sertifika almak için yalnızca ürün kodu yazın, batch yazmanız gerekmez, ürün kodunu yazarken paketleme ekini yazmak zorunda da değilsiniz.Örneğin,
+                <b>"SO0333"</b> de çalışacaktır, <b>"SO03330500"</b> de çalışacaktır. Göndere bastıktan sonra
+                aşağıda girdiğiniz ürün için örnek sertifika, TDS ve MSDS linkleri gelecektir. <br> <span class="text-danger font-weight-bold">Batchli sertifika indirirken ürünün paketleme kodu dahil tam kodunu yazmanız gerekmektedir. Yazmazsanız da sertifika gelecektir fakat işlem çok yavaş olacaktır.</span>
+                <br>
+
+            </p>
+        </div>
+    </div>
+
+    <div class="row px-3 pb-3 bg-light">
+        <div class="col-12 align-self-center">
+            <form id="coa-form">
+                <div class="form-group p-0">
+                    <input type="text" class="form-control my-2" id="codeBox"
+                           placeholder="Ürün Kodu">
+                    <input type="text" class="form-control my-2" id="batchBox"
+                           placeholder="Var ise batch numarası, yok ise örnek sertifika indirilir">
+                </div>
+                <button type="submit" class="btn btn-outline-success font-weight-bold" id="btnSearchSch">Gönder</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="row d-flex jumbotron bg-light justify-content-center" id="results">
+        <h3 id="result-info-text">Sonuçlar Burada Görünecek</h3>
+    </div>
+</div>
+<div class="text-center">
+    <img src="{{ url_for("static", filename="logo.png") }}" class="mx-auto d-block" alt="Analitik Kimya">
+</div>
+<script src="{{ url_for("static", filename="js/jquery.js") }}"></script>
+<script src="{{ url_for("static", filename="js/popper.js") }}"></script>
+<script src="{{ url_for("static", filename="js/bootstrap.js") }}"></script>
+<script src="{{ url_for("static", filename="js/fontawesome-solid.js") }}"></script>
+<script type="application/javascript">
+
+    window.post_url = "{{ url_for("get_info") }}";
+    $("#loading-spinner").hide()
+
+</script>
+<script src="{{ url_for("static", filename="js/render.js") }}"></script>
+</body>
+</html>
